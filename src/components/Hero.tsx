@@ -2,11 +2,6 @@
 import { Button } from '@/components/ui/button';
 import { Phone } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from '@/components/ui/carousel';
 
 const backgroundImages = [
   'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80',
@@ -30,27 +25,22 @@ const Hero = () => {
       id="inicio" 
       className="relative min-h-[90vh] flex items-center overflow-hidden"
     >
-      {/* Background Carousel */}
+      {/* Background Images */}
       <div className="absolute inset-0 w-full h-full">
-        <Carousel className="w-full h-full" opts={{ loop: true }}>
-          <CarouselContent className="h-full">
-            {backgroundImages.map((image, index) => (
-              <CarouselItem key={index} className="h-full">
-                <div 
-                  className={`w-full h-full bg-cover bg-center transition-opacity duration-1000 ${
-                    index === currentSlide ? 'opacity-100' : 'opacity-0'
-                  }`}
-                  style={{ 
-                    backgroundImage: `url(${image})`,
-                    backgroundPosition: 'center',
-                  }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-blue-800/75 to-blue-700/70"></div>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-        </Carousel>
+        {backgroundImages.map((image, index) => (
+          <div 
+            key={index}
+            className={`absolute inset-0 w-full h-full bg-cover bg-center transition-opacity duration-1000 ${
+              index === currentSlide ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{ 
+              backgroundImage: `url(${image})`,
+              backgroundPosition: 'center',
+            }}
+          >
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-blue-800/75 to-blue-700/70"></div>
+          </div>
+        ))}
       </div>
 
       {/* Background Elements with reduced opacity */}
