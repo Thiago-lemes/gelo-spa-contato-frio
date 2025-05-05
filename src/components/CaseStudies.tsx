@@ -73,7 +73,7 @@ const CaseStudies = () => {
     ? caseStudies 
     : caseStudies.filter(cs => cs.category === activeTab);
 
-  // Handle scroll for enhanced parallax effect
+  // Handle scroll for subtle parallax effect
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
@@ -85,40 +85,40 @@ const CaseStudies = () => {
 
   return (
     <section id="cases" className="py-20 relative overflow-hidden">
-      {/* Enhanced Parallax background with stronger effect */}
+      {/* Subtle gradient background */}
       <div 
         className="absolute inset-0 bg-gradient-to-b from-blue-100 to-blue-50"
         style={{ 
-          transform: `translateY(${scrollPosition * 0.15}px)`,
+          transform: `translateY(${scrollPosition * 0.05}px)`,
           zIndex: 0
         }}
       />
       
-      {/* Floating circles with enhanced parallax depth */}
+      {/* Subtle floating circles with gentle parallax */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-blue-200 rounded-full opacity-30"
-             style={{ transform: `translate(${scrollPosition * 0.08}px, ${scrollPosition * -0.05}px)` }} />
-        <div className="absolute top-60 right-20 w-96 h-96 bg-blue-300 rounded-full opacity-30"
-             style={{ transform: `translate(${scrollPosition * -0.1}px, ${scrollPosition * 0.03}px)` }} />
-        <div className="absolute bottom-20 left-1/4 w-80 h-80 bg-indigo-200 rounded-full opacity-30"
-             style={{ transform: `translate(${scrollPosition * -0.06}px, ${scrollPosition * 0.08}px)` }} />
+        <div className="absolute top-20 left-10 w-64 h-64 bg-blue-200 rounded-full opacity-20"
+             style={{ transform: `translate(${scrollPosition * 0.03}px, ${scrollPosition * -0.02}px)` }} />
+        <div className="absolute top-60 right-20 w-96 h-96 bg-blue-300 rounded-full opacity-20"
+             style={{ transform: `translate(${scrollPosition * -0.04}px, ${scrollPosition * 0.01}px)` }} />
+        <div className="absolute bottom-20 left-1/4 w-80 h-80 bg-indigo-200 rounded-full opacity-20"
+             style={{ transform: `translate(${scrollPosition * -0.02}px, ${scrollPosition * 0.03}px)` }} />
       </div>
 
-      {/* Enhanced diagonal decorative lines */}
+      {/* Subtle decorative lines */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-20">
-          <div className="absolute top-0 left-0 w-full h-2 bg-blue-500 transform -rotate-12 origin-top-left"
-               style={{ transform: `rotate(-12deg) translateY(${scrollPosition * 0.4}px)` }} />
-          <div className="absolute top-1/3 right-0 w-full h-2 bg-blue-500 transform rotate-12 origin-top-right"
-               style={{ transform: `rotate(12deg) translateY(${scrollPosition * 0.3}px)` }} />
-          <div className="absolute bottom-1/4 left-0 w-full h-2 bg-blue-500 transform -rotate-8 origin-bottom-left"
-               style={{ transform: `rotate(-8deg) translateY(${scrollPosition * 0.25}px)` }} />
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          <div className="absolute top-0 left-0 w-full h-1 bg-blue-500 transform -rotate-12 origin-top-left"
+               style={{ transform: `rotate(-12deg) translateY(${scrollPosition * 0.1}px)` }} />
+          <div className="absolute top-1/3 right-0 w-full h-1 bg-blue-500 transform rotate-12 origin-top-right"
+               style={{ transform: `rotate(12deg) translateY(${scrollPosition * 0.08}px)` }} />
+          <div className="absolute bottom-1/4 left-0 w-full h-1 bg-blue-500 transform -rotate-8 origin-bottom-left"
+               style={{ transform: `rotate(-8deg) translateY(${scrollPosition * 0.06}px)` }} />
         </div>
       </div>
       
-      {/* Enhanced content overlay with parallax effect */}
+      {/* Subtle content overlay */}
       <div className="absolute inset-0 bg-white bg-opacity-60 backdrop-blur-sm" 
-           style={{ transform: `translateY(${scrollPosition * 0.06}px)` }}></div>
+           style={{ transform: `translateY(${scrollPosition * 0.02}px)` }}></div>
       
       <div className="container mx-auto px-4 relative z-20">
         <div className="text-center mb-12">
@@ -147,7 +147,7 @@ const CaseStudies = () => {
                   key={caseItem.id} 
                   className="overflow-hidden border-none shadow-xl hover:shadow-2xl transition-all duration-500 group"
                   style={{
-                    transform: `translateY(${scrollPosition * -0.1 * (caseItem.id % 3 + 1)}px) rotate(${(caseItem.id % 2 === 0 ? 1 : -1) * scrollPosition * 0.005}deg)`,
+                    transform: `translateY(${scrollPosition * -0.02 * (caseItem.id % 3 + 1)}px) rotate(${(caseItem.id % 2 === 0 ? 1 : -1) * scrollPosition * 0.001}deg)`,
                     transition: "transform 0.1s ease-out"
                   }}
                 >
@@ -157,7 +157,7 @@ const CaseStudies = () => {
                       alt={caseItem.title} 
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                       style={{
-                        transform: `scale(${1 + scrollPosition * 0.001}) translateY(${scrollPosition * -0.06}px)`
+                        transform: `scale(${1 + scrollPosition * 0.0003}) translateY(${scrollPosition * -0.02}px)`
                       }}
                     />
                   </div>
