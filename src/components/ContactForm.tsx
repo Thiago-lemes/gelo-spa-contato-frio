@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
-import { Phone, Mail, Map, Check } from "lucide-react";
+import { Phone, Mail, MapPin, Check, MessageCircle } from "lucide-react";
 
 const ContactForm = () => {
   const { toast } = useToast();
@@ -45,20 +45,28 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contato" className="py-20 bg-gradient-to-b from-white to-blue-50">
-      <div className="container mx-auto px-4">
+    <section id="contato" className="py-20 bg-gradient-to-b from-white to-blue-50 relative">
+      {/* Background design elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+        <div className="absolute -top-20 -left-20 w-64 h-64 rounded-full bg-blue-200"></div>
+        <div className="absolute top-1/2 right-10 w-40 h-40 rounded-full bg-blue-300"></div>
+        <div className="absolute bottom-10 left-1/4 w-80 h-80 rounded-full bg-blue-100"></div>
+      </div>
+      
+      <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <span className="inline-block text-blue-600 font-semibold mb-2">CONTATO</span>
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">Entre em Contato Com Nossa Equipe</h2>
+            <span className="inline-block text-blue-600 font-semibold mb-2 px-4 py-1 bg-blue-50 rounded-full">CONTATO</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Entre em Contato Com Nossa Equipe</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Estamos prontos para ajudar com soluções de refrigeração e ar-condicionado adaptadas às suas necessidades.
             </p>
           </div>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="md:col-span-1 space-y-8">
-              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+            <div className="md:col-span-1 space-y-6">
+              {/* Contact cards with updated styling */}
+              <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                 <div className="flex items-start space-x-4">
                   <div className="bg-blue-100 p-3 rounded-full">
                     <Phone className="h-6 w-6 text-blue-600" />
@@ -71,7 +79,7 @@ const ContactForm = () => {
                 </div>
               </div>
               
-              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                 <div className="flex items-start space-x-4">
                   <div className="bg-blue-100 p-3 rounded-full">
                     <Mail className="h-6 w-6 text-blue-600" />
@@ -84,10 +92,10 @@ const ContactForm = () => {
                 </div>
               </div>
               
-              <div className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+              <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                 <div className="flex items-start space-x-4">
                   <div className="bg-blue-100 p-3 rounded-full">
-                    <Map className="h-6 w-6 text-blue-600" />
+                    <MapPin className="h-6 w-6 text-blue-600" />
                   </div>
                   <div>
                     <h3 className="font-semibold text-lg mb-1">Endereço</h3>
@@ -99,9 +107,31 @@ const ContactForm = () => {
                   </div>
                 </div>
               </div>
+              
+              {/* WhatsApp contact card */}
+              <div className="bg-green-500 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 text-white">
+                <div className="flex items-start space-x-4">
+                  <div className="bg-white/20 p-3 rounded-full">
+                    <MessageCircle className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-1">WhatsApp</h3>
+                    <p className="text-white/90">Atendimento rápido</p>
+                    <a 
+                      href="https://wa.me/5500000000000" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-block mt-2 bg-white text-green-600 px-3 py-1 rounded-full text-sm font-medium hover:bg-green-50"
+                    >
+                      Enviar mensagem
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
             
-            <div className="md:col-span-2 bg-white p-8 rounded-lg shadow-lg relative overflow-hidden">
+            {/* Form with updated styling */}
+            <div className="md:col-span-2 bg-white p-8 rounded-xl shadow-lg relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full -mr-16 -mt-16 z-0"></div>
               <div className="absolute bottom-0 left-0 w-24 h-24 bg-blue-50 rounded-full -ml-12 -mb-12 z-0"></div>
               
@@ -195,18 +225,18 @@ const ContactForm = () => {
                     />
                   </div>
                   
-                  <div className="flex items-center">
-                    <div className="bg-blue-50 p-2 rounded-full mr-3">
+                  <div className="flex items-center bg-blue-50 p-3 rounded-lg">
+                    <div className="bg-blue-100 p-2 rounded-full mr-3">
                       <Check className="h-5 w-5 text-blue-600" />
                     </div>
-                    <p className="text-sm text-gray-500">
+                    <p className="text-sm text-gray-700">
                       Orçamento sem compromisso e atendimento em até 24h
                     </p>
                   </div>
                   
                   <Button 
                     type="submit" 
-                    className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-6"
+                    className="w-full bg-blue-600 hover:bg-blue-700 text-white text-lg py-6"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? "Enviando..." : "Solicitar Orçamento Grátis"}

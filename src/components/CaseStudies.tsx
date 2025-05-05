@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -67,16 +67,42 @@ const caseStudies = [
 
 const CaseStudies = () => {
   const [activeTab, setActiveTab] = useState("Todos");
+  const [scrollPosition, setScrollPosition] = useState(0);
   
   const filteredCases = activeTab === "Todos" 
     ? caseStudies 
     : caseStudies.filter(cs => cs.category === activeTab);
 
+  // Handle scroll for parallax effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+    
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <section id="cases" className="py-20 bg-white">
-      <div className="container mx-auto px-4">
+    <section id="cases" className="py-20 bg-white relative overflow-hidden">
+      {/* Parallax background */}
+      <div 
+        className="absolute inset-0 bg-blue-50 opacity-50"
+        style={{ 
+          backgroundImage: `url('https://images.unsplash.com/photo-1527089876305-200e0b3a2cd8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          transform: `translateY(${scrollPosition * 0.15}px)`,
+          zIndex: 0
+        }}
+      />
+      
+      {/* Content overlay with slight transparency */}
+      <div className="absolute inset-0 bg-white bg-opacity-90 z-10"></div>
+      
+      <div className="container mx-auto px-4 relative z-20">
         <div className="text-center mb-12">
-          <span className="inline-block text-blue-600 font-semibold mb-2">NOSSOS CASES</span>
+          <span className="inline-block text-blue-600 font-semibold mb-2 bg-blue-50 px-4 py-1 rounded-full">NOSSOS CASES</span>
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Projetos Realizados com Excelência</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Conheça alguns dos nossos projetos realizados com excelência e total satisfação dos clientes.
@@ -97,7 +123,14 @@ const CaseStudies = () => {
           <TabsContent value={activeTab} className="mt-0">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredCases.map((caseItem) => (
-                <Card key={caseItem.id} className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 group">
+                <Card 
+                  key={caseItem.id} 
+                  className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 group"
+                  style={{
+                    transform: `translateY(${scrollPosition * 0.02 * (caseItem.id % 3 + 1)}px)`,
+                    transition: "transform 0.1s ease-out"
+                  }}
+                >
                   <div className="aspect-video w-full overflow-hidden">
                     <img 
                       src={caseItem.imageUrl} 
