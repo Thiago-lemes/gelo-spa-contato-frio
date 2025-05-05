@@ -55,9 +55,9 @@ const About = () => {
             <div className="relative">
               <div className="bg-blue-100 rounded-lg p-4 absolute -top-4 -left-4 w-full h-full"></div>
               <img 
-                src="https://placehold.co/600x400/e2eeff/1e40af?text=Nossa+Equipe" 
+                src="https://images.unsplash.com/photo-1621905252507-b35492cc74b4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
                 alt="Equipe EasyCold" 
-                className="rounded-lg w-full h-auto relative shadow-lg"
+                className="rounded-lg w-full h-auto relative shadow-lg object-cover"
               />
             </div>
           </div>

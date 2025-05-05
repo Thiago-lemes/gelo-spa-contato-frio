@@ -1,30 +1,31 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Home, Building2, Factory, Building } from 'lucide-react';
 
 const Areas = () => {
   const areas = [
     { 
       title: "Residencial", 
-      icon: "🏠",
+      icon: <Home className="w-10 h-10 text-blue-600" />,
       description: "Soluções de climatização para apartamentos, casas e condomínios residenciais.",
       services: ["Split", "Multi Split", "Ar-condicionado de Janela", "Cortinas de Ar", "Purificadores"]
     },
     { 
       title: "Comercial", 
-      icon: "🏢",
+      icon: <Building2 className="w-10 h-10 text-blue-600" />,
       description: "Projetos para escritórios, lojas, restaurantes e pequenos comércios.",
       services: ["VRF", "Split Cassete", "Split Piso-Teto", "Sistemas de Exaustão"]
     },
     { 
       title: "Industrial", 
-      icon: "🏭",
+      icon: <Factory className="w-10 h-10 text-blue-600" />,
       description: "Climatização industrial para fábricas, galpões e ambientes de grande porte.",
       services: ["Chillers", "Self-Contained", "Torres de Resfriamento", "Câmaras Frigoríficas"]
     },
     { 
       title: "Hospitalar", 
-      icon: "🏥",
+      icon: <Building className="w-10 h-10 text-blue-600" />,
       description: "Soluções especializadas para hospitais, clínicas e laboratórios.",
       services: ["Ar-condicionado com Filtragem HEPA", "Pressão Negativa/Positiva", "Controle de Umidade"]
     },
@@ -46,7 +47,7 @@ const Areas = () => {
             {areas.map((area, index) => (
               <Card key={index} className="bg-white hover:shadow-lg transition-shadow duration-300">
                 <CardHeader>
-                  <div className="text-3xl mb-3">{area.icon}</div>
+                  <div className="mb-3">{area.icon}</div>
                   <CardTitle>{area.title}</CardTitle>
                   <CardDescription>{area.description}</CardDescription>
                 </CardHeader>

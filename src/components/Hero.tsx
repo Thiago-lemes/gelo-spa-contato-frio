@@ -1,6 +1,6 @@
 
 import { Button } from '@/components/ui/button';
-import { Phone } from 'lucide-react';
+import { Phone, MessageSquare } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const backgroundImages = [
@@ -67,6 +67,12 @@ const Hero = () => {
               <a href="#contato" className="flex items-center gap-2">
                 <Phone className="h-4 w-4" />
                 Solicitar Orçamento
+              </a>
+            </Button>
+            <Button size="lg" className="bg-green-500 text-white hover:bg-green-600" asChild>
+              <a href="https://wa.me/5500000000000" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                <MessageSquare className="h-4 w-4" />
+                Whatsapp
               </a>
             </Button>
           </div>
