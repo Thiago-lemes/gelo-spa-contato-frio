@@ -84,25 +84,45 @@ const CaseStudies = () => {
   }, []);
 
   return (
-    <section id="cases" className="py-20 bg-white relative overflow-hidden">
-      {/* Parallax background */}
+    <section id="cases" className="py-20 relative overflow-hidden">
+      {/* Enhanced Parallax background with more movement and contrast */}
       <div 
-        className="absolute inset-0 bg-blue-50 opacity-50"
+        className="absolute inset-0 bg-gradient-to-b from-blue-100 to-blue-50"
         style={{ 
-          backgroundImage: `url('https://images.unsplash.com/photo-1527089876305-200e0b3a2cd8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          transform: `translateY(${scrollPosition * 0.15}px)`,
+          transform: `translateY(${scrollPosition * 0.05}px)`,
           zIndex: 0
         }}
       />
       
-      {/* Content overlay with slight transparency */}
-      <div className="absolute inset-0 bg-white bg-opacity-90 z-10"></div>
+      {/* Floating circles for enhanced parallax depth */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-20 left-10 w-64 h-64 bg-blue-200 rounded-full opacity-20"
+             style={{ transform: `translate(${scrollPosition * 0.03}px, ${scrollPosition * -0.02}px)` }} />
+        <div className="absolute top-60 right-20 w-96 h-96 bg-blue-300 rounded-full opacity-20"
+             style={{ transform: `translate(${scrollPosition * -0.04}px, ${scrollPosition * 0.01}px)` }} />
+        <div className="absolute bottom-20 left-1/4 w-80 h-80 bg-indigo-200 rounded-full opacity-20"
+             style={{ transform: `translate(${scrollPosition * -0.02}px, ${scrollPosition * 0.04}px)` }} />
+      </div>
+
+      {/* Diagonal decorative lines with parallax movement */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10">
+          <div className="absolute top-0 left-0 w-full h-1 bg-blue-500 transform -rotate-12 origin-top-left"
+               style={{ transform: `rotate(-12deg) translateY(${scrollPosition * 0.2}px)` }} />
+          <div className="absolute top-1/3 right-0 w-full h-1 bg-blue-500 transform rotate-12 origin-top-right"
+               style={{ transform: `rotate(12deg) translateY(${scrollPosition * 0.15}px)` }} />
+          <div className="absolute bottom-1/4 left-0 w-full h-1 bg-blue-500 transform -rotate-8 origin-bottom-left"
+               style={{ transform: `rotate(-8deg) translateY(${scrollPosition * 0.1}px)` }} />
+        </div>
+      </div>
+      
+      {/* Content overlay with parallax effect on cards */}
+      <div className="absolute inset-0 bg-white bg-opacity-60 backdrop-blur-sm" 
+           style={{ transform: `translateY(${scrollPosition * 0.02}px)` }}></div>
       
       <div className="container mx-auto px-4 relative z-20">
         <div className="text-center mb-12">
-          <span className="inline-block text-blue-600 font-semibold mb-2 bg-blue-50 px-4 py-1 rounded-full">NOSSOS CASES</span>
+          <span className="inline-block text-blue-600 font-semibold mb-2 bg-blue-50 px-4 py-1 rounded-full animate-fade-in">NOSSOS CASES</span>
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Projetos Realizados com Excelência</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Conheça alguns dos nossos projetos realizados com excelência e total satisfação dos clientes.
@@ -111,7 +131,7 @@ const CaseStudies = () => {
         
         <Tabs defaultValue="Todos" className="w-full" onValueChange={setActiveTab}>
           <div className="flex justify-center mb-8">
-            <TabsList className="bg-gray-100">
+            <TabsList className="bg-gray-100 shadow-md">
               {caseCategories.map((category) => (
                 <TabsTrigger key={category} value={category} className="px-6 data-[state=active]:bg-blue-600 data-[state=active]:text-white">
                   {category}
@@ -125,9 +145,9 @@ const CaseStudies = () => {
               {filteredCases.map((caseItem) => (
                 <Card 
                   key={caseItem.id} 
-                  className="overflow-hidden border-none shadow-lg hover:shadow-xl transition-all duration-300 group"
+                  className="overflow-hidden border-none shadow-xl hover:shadow-2xl transition-all duration-500 group"
                   style={{
-                    transform: `translateY(${scrollPosition * 0.02 * (caseItem.id % 3 + 1)}px)`,
+                    transform: `translateY(${scrollPosition * -0.06 * (caseItem.id % 3 + 1)}px) rotate(${(caseItem.id % 2 === 0 ? 1 : -1) * scrollPosition * 0.003}deg)`,
                     transition: "transform 0.1s ease-out"
                   }}
                 >
@@ -135,7 +155,10 @@ const CaseStudies = () => {
                     <img 
                       src={caseItem.imageUrl} 
                       alt={caseItem.title} 
-                      className="w-full h-full object-cover transition-transform group-hover:scale-105 duration-500"
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      style={{
+                        transform: `scale(${1 + scrollPosition * 0.0005}) translateY(${scrollPosition * -0.03}px)`
+                      }}
                     />
                   </div>
                   <CardContent className="p-6">
